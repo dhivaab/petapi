@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context ="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+	>
+
+<!-- through spring xml init and destroy -->
+<bean id ="pat" class ="com.blueocean.springcorelearnings.secondlesson.Patient" init-method="init" destroy-method="destroy">
+	<property name ="id" value ="1"></property>
+	<property name ="name" value ="orkut"></property>
+</bean>
+<!-- through spring class itself -->
+<bean id ="emp" class ="com.blueocean.springcorelearnings.secondlesson.Employee">
+	<property name ="id" value ="2"></property>
+	<property name ="name" value ="orkut2"></property>
+</bean>
+<!-- through spring annoation based -->
+<bean id ="stu" class ="com.blueocean.springcorelearnings.secondlesson.Student">
+	<property name ="id" value ="3"></property>
+	<property name ="name" value ="orkut3"></property>
+</bean>
+<!--  depedency check required.  -->
+<bean id ="note" class ="com.blueocean.springcorelearnings.secondlesson.Notes">
+	<property name ="id" value ="4"></property>
+	<property name ="name" value ="test"></property>
+</bean>
+<!--  inner beans -->
+<bean id ="address" class ="com.blueocean.springcorelearnings.secondlesson.Address">
+	<property name ="id" value ="100"></property>
+	<property name ="street">
+		<bean id ="street" class ="com.blueocean.springcorelearnings.secondlesson.Street">
+			<property name ="name" value ="balaji nagar"></property>
+			<property name ="number" value ="41"></property>
+		</bean>
+	</property>
+</bean>
+<!--  bean scope singleton default -->
+<bean id ="b1" class ="com.blueocean.springcorelearnings.secondlesson.BeanScope">
+	<property name ="id" value ="2000"></property>
+	<property name ="name" value ="b1scope"></property>
+</bean>
+<!--  bean scope prototype -->
+<bean id ="b2" class ="com.blueocean.springcorelearnings.secondlesson.BeanScope" scope ="prototype">
+	<property name ="id" value ="300"></property>
+	<property name ="name" value ="b2scope"></property>
+</bean>
+<!-- constructor passing arguments -->
+<bean id ="cost" class ="com.blueocean.springcorelearnings.secondlesson.House">
+	<constructor-arg>
+		<value>100000</value>
+	</constructor-arg>
+	<constructor-arg>
+		<value>New model house </value>
+	</constructor-arg>
+</bean>
+	<!-- constructor with arguments as ref  -->
+	<bean id ="road" class ="com.blueocean.springcorelearnings.secondlesson.Road">
+		<constructor-arg>
+			<value>90000</value>
+		</constructor-arg>
+		<constructor-arg>
+			<ref bean ="cost"></ref>
+		</constructor-arg>
+	</bean>
+	
+	<!--  constructor ambiquity -->
+	<bean id ="example" class ="com.blueocean.springcorelearnings.secondlesson.Example">
+		<constructor-arg value ="100"/>
+		<constructor-arg value ="2000"/>
+	</bean>
+	
+	<!--  constructor ambiquity solution -->
+	<bean id ="example1" class ="com.blueocean.springcorelearnings.secondlesson.Example">
+		<constructor-arg value ="100" type = "int" index="0" />
+		<constructor-arg value ="2000" type = "int" index ="1"/>
+	</bean>
+	
+	<context:property-placeholder location ="com/blueocean/springcorelearnings/secondlesson/database.properties"/>
+	<!--  parameter external configuration or bean externalization -->
+	<bean id ="database1" class ="com.blueocean.springcorelearnings.secondlesson.Database">
+		<constructor-arg value ="${name}" type = "String" index="0" />
+		<constructor-arg value ="${userid}" type = "String" index ="1"/>
+		<constructor-arg value ="${password}" type = "String" index ="2"/>
+	</bean>
+	
+<bean class ="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"></bean>
+</beans>

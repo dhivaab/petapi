@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	  xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- simple property bean example -->
+<bean id="emp" class ="com.blueocean.springcorelearnings.firstlesson.Employee">
+<property name ="id" value ="1"></property>
+<property name ="name" value ="bala"></property>
+</bean>
+<!-- simple property bean example -->
+<bean id="emp1" class ="com.blueocean.springcorelearnings.firstlesson.Employee" p:id="20" p:name="test"/>
+<!-- collections list property bean -->
+<bean id="col1" class ="com.blueocean.springcorelearnings.firstlesson.College">
+	<property name ="colleges">
+		<list>
+			<value>Mechanical</value>
+			<value>EEE</value>
+		</list>
+	</property>
+</bean>
+<!-- collections set property bean -->
+<bean id="road" class ="com.blueocean.springcorelearnings.firstlesson.Road">
+	<property name ="name" value ="OMR Road"></property>
+	<property name ="cars">
+		<list>
+			<value>BMW</value>
+			<value>Honda</value>
+			<value>Tata</value>
+			
+		</list>
+	</property>
+</bean>
+<!-- collections map property bean -->
+<bean id="cust" class ="com.blueocean.springcorelearnings.firstlesson.Customer">
+	<property name ="id" value ="1"></property>
+	<property name ="products">
+		<map>
+			<entry key ="1" value ="Mug"></entry>
+			<entry key ="2" value ="Soap"></entry>
+			<entry key ="3" value ="Slip"></entry>
+		</map>
+	</property>
+</bean>
+<!-- collections properties bean -->
+<bean id="langs" class ="com.blueocean.springcorelearnings.firstlesson.Language">
+	<property name ="countrylangs">
+		<props>
+			<prop key ="USA">English</prop>
+			<prop key ="Tamilnadu">Tamil</prop>
+		</props>
+	</property>
+</bean>
+<!-- collections reference bean -->
+<bean id="scores" class ="com.blueocean.springcorelearnings.firstlesson.Score" p:maths="100" p:science="200" p:english="90"/>
+<bean id ="students" class = "com.blueocean.springcorelearnings.firstlesson.Student">
+	<property name ="id" value ="1"></property>
+	<property name ="scores" ref = "scores">
+	</property> 
+</bean>
+</beans>
