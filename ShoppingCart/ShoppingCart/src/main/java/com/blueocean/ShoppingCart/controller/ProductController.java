@@ -8,26 +8,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.blueocean.ShoppingCart.model.Order;
-import com.blueocean.ShoppingCart.model.Orderdetail;
-import com.blueocean.ShoppingCart.service.OrderService;
+import com.blueocean.ShoppingCart.model.Product;
+import com.blueocean.ShoppingCart.model.ProductLine;
+import com.blueocean.ShoppingCart.service.ProductService;
 
 @RestController
 @RequestMapping("/api/v1")
-public class OrderController {
+public class ProductController {
 
 	@Autowired
-	private OrderService orderservice;
+	private ProductService productservice;
 	
-	
-	@GetMapping("/orders")
-	ResponseEntity<?> getOrders() 
+	@GetMapping("/products")
+	ResponseEntity<?> getAllProducts() 
 	{
 		try 
 		{
-			List<Order> orders = orderservice.getAllOrders();
-			return new ResponseEntity<List<Order>>(orders,HttpStatus.OK);
+			List<Product> products = productservice.getAllProducts();
+			return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
 			
 		}
 		catch(Exception ex)
@@ -35,13 +33,13 @@ public class OrderController {
 			return new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
 		}
 	}
-	@GetMapping("/orderdetails")
-	ResponseEntity<?> getorderdetails() 
+	@GetMapping("/productlines")
+	ResponseEntity<?> getAllproductlines() 
 	{
 		try 
 		{
-			List<Orderdetail> orderdetails = orderservice.getOrderdetails();
-			return new ResponseEntity<List<Orderdetail>>(orderdetails,HttpStatus.OK);
+			List<ProductLine> productlines = productservice.getProductLines();
+			return new ResponseEntity<List<ProductLine>>(productlines,HttpStatus.OK);
 			
 		}
 		catch(Exception ex)
@@ -49,4 +47,5 @@ public class OrderController {
 			return new ResponseEntity<String>(ex.getMessage(),HttpStatus.NOT_FOUND);
 		}
 	}
+	
 }

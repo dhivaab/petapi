@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "orders")
-public class Orders implements Serializable{
+public class Order implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,7 +86,7 @@ public class Orders implements Serializable{
 				+ ", shippedDate=" + shippedDate + ", status=" + status + ", comments=" + comments + ", customerNumber="
 				+ customerNumber + "]";
 	}
-	public Orders(int orderNumber, Date orderDate, Date requiredDate, Date shippedDate, String status, String comments,
+	public Order(int orderNumber, Date orderDate, Date requiredDate, Date shippedDate, String status, String comments,
 			int customerNumber) {
 		super();
 		this.orderNumber = orderNumber;
@@ -97,7 +97,7 @@ public class Orders implements Serializable{
 		this.comments = comments;
 		this.customerNumber = customerNumber;
 	}
-	public Orders() {
+	public Order() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

@@ -2,11 +2,17 @@ package com.blueocean.ShoppingCart.service;
 
 import java.util.List;
 
-import com.blueocean.ShoppingCart.model.Orders;
+import com.blueocean.ShoppingCart.model.Order;
+import com.blueocean.ShoppingCart.model.Orderdetail;
 
 public interface OrderService {
 	
-    List<Orders> getAllOrders();
+    List<Order> getAllOrders();
     
-    Orders getOrder(int orderNumber);
+    Order getOrder(int orderNumber);
+    
+    List<Orderdetail> getOrderdetails();
+    
+    List<Orderdetail> getOrderdetailbyOrderNumber(int orderNumber);
+
 }
